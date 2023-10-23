@@ -74,7 +74,7 @@ def remove_above_nyquist(amplitudes, pitch, sampling_rate):
 
 
 def scale_function(x):
-    return 2 * torch.sigmoid(x)**(math.log(10)) + 1e-7
+    return 2 * torch.sigmoid(x) ** (math.log(10)) + 1e-7
 
 
 def extract_loudness(signal, sampling_rate, block_size, n_fft=2048):
@@ -86,7 +86,7 @@ def extract_loudness(signal, sampling_rate, block_size, n_fft=2048):
         center=True,
     )
     S = np.log(abs(S) + 1e-7)
-    f = li.fft_frequencies(sampling_rate, n_fft)
+    f = li.fft_frequencies(sr=sampling_rate, n_fft=n_fft)
     a_weight = li.A_weighting(f)
 
     S = S + a_weight.reshape(-1, 1)
@@ -163,6 +163,6 @@ def fft_convolve(signal, kernel):
     kernel = nn.functional.pad(kernel, (kernel.shape[-1], 0))
 
     output = fft.irfft(fft.rfft(signal) * fft.rfft(kernel))
-    output = output[..., output.shape[-1] // 2:]
+    output = output[..., output.shape[-1] // 2 :]
 
     return output
