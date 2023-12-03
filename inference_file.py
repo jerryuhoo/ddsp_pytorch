@@ -22,4 +22,4 @@ audio = model(pitch, loudness)
 # save audio
 from scipy.io.wavfile import write
 
-write("test_output2.wav", 16000, audio[0].detach().cpu().numpy())
+write("test_output1.wav", 16000, audio[0].detach().cpu().numpy())
