@@ -118,7 +118,10 @@ def calculate(
     """Calculate log-F0 RMSE."""
     for i, gen_path in enumerate(file_list):
         corresponding_list = list(
-            filter(lambda gt_path: _get_basename(gt_path) in gen_path, gt_file_list)
+            filter(
+                lambda gt_path: _get_basename(gt_path) == _get_basename(gen_path),
+                gt_file_list,
+            )
         )
         assert len(corresponding_list) == 1
         gt_path = corresponding_list[0]
