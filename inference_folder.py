@@ -7,11 +7,13 @@ from scipy.io.wavfile import write
 from tqdm import tqdm
 import numpy as np
 
-model = torch.jit.load("export/ddsp_mytraining_pretrained.ts")
+model_name = "cats_seg"
+
+model = torch.jit.load("export/ddsp_" + model_name + "_pretrained.ts")
 
 folder_path = "/home/yifeng/SVS/data/violin_segments"
 
-output_folder = "output_test"
+output_folder = "output_test_" + model_name
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
