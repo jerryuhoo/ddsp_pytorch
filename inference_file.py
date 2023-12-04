@@ -1,6 +1,7 @@
 import torch
 from preprocess import preprocess
 import librosa as li
+import numpy as np
 
 model = torch.jit.load("export/ddsp_mytraining_pretrained.ts")
 
@@ -22,4 +23,7 @@ audio = model(pitch, loudness)
 # save audio
 from scipy.io.wavfile import write
 
-write("test_output1.wav", 16000, audio[0].detach().cpu().numpy())
+audio_numpy = audio[0].detach().cpu().numpy()
+# normalized_audio = audio_numpy / np.max(np.abs(audio_numpy))
+audio_16bit = np.int16(audio_numpy * 32767)
+write("test_output1.wav", 16000, audio_16bit)

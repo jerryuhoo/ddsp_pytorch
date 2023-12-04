@@ -33,7 +33,7 @@ for file_path in tqdm(files, desc="Processing files"):
     output_file_path = os.path.join(output_folder, output_file_name)
 
     audio_numpy = audio[0].detach().cpu().numpy()
-    normalized_audio = audio_numpy / np.max(np.abs(audio_numpy))
-    audio_16bit = np.int16(normalized_audio * 32767)
+    # normalized_audio = audio_numpy / np.max(np.abs(audio_numpy))
+    audio_16bit = np.int16(audio_numpy * 32767)
     write(output_file_path, 16000, audio_16bit)
     # write(output_file_path, 16000, audio[0].detach().cpu().numpy())
