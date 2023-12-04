@@ -147,6 +147,11 @@ def calculate(
             mcep_dim=args.mcep_dim,
             mcep_alpha=args.mcep_alpha,
         )
+
+        if np.all(gen_f0 == 0):
+            logging.info(f"{gt_basename} skipped due to all zero gen_f0")
+            continue
+
         gt_mcep, gt_f0 = world_extract(
             x=gt_x,
             fs=fs,
@@ -166,11 +171,17 @@ def calculate(
 
         # Get voiced part
         nonzero_idxs = np.where((gen_f0_dtw != 0) & (gt_f0_dtw != 0))[0]
+        if len(nonzero_idxs) == 0:
+            logging.info(f"{gt_basename} skipped due to no voiced frames")
+            continue
         gen_f0_dtw_voiced = np.log(gen_f0_dtw[nonzero_idxs])
         gt_f0_dtw_voiced = np.log(gt_f0_dtw[nonzero_idxs])
 
         # log F0 RMSE
         log_f0_rmse = np.sqrt(np.mean((gen_f0_dtw_voiced - gt_f0_dtw_voiced) ** 2))
+        if np.isnan(log_f0_rmse):
+            logging.info(f"{gt_basename} RMSE calculation resulted in NaN, skipping")
+            continue
         logging.info(f"{gt_basename} {log_f0_rmse:.4f}")
         f0_rmse_dict[gt_basename] = log_f0_rmse
 
@@ -239,7 +250,7 @@ def get_parser() -> argparse.Namespace:
     )
     parser.add_argument(
         "--nj",
-        default=1,
+        default=8,
         type=int,
         help="Number of parallel jobs.",
     )

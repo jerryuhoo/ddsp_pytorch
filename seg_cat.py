@@ -59,7 +59,7 @@ def find_and_save_high_energy_segments(
 
 
 folder_path = "/home/yifeng/SVS/ddsp_pytorch/data/cats/train"
-output_folder = "/home/yifeng/SVS/ddsp_pytorch/data/cats/train2"
+output_folder = "/home/yifeng/SVS/ddsp_pytorch/data/cats/train_seg"
 threshold = 100
 sr = 16000
 window_size = sr // 2
