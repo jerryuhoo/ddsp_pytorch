@@ -60,8 +60,9 @@ def world_extract(
 
     Args:
         x (ndarray): 1D waveform array.
-        fs (int): Minimum f0 value (default=40).
-        f0 (int): Maximum f0 value (default=800).
+        fs (int): Sampling frequency.
+        f0min (int): Minimum f0 value (default=40).
+        f0max (int): Maximum f0 value (default=800).
         n_shift (int): Shift length in point (default=256).
         n_fft (int): FFT length in point (default=512).
         n_shift (int): Shift length in point (default=256).
@@ -232,13 +233,13 @@ def get_parser() -> argparse.Namespace:
     )
     parser.add_argument(
         "--f0max",
-        default=800,
+        default=1600,
         type=int,
         help="Maximum f0 value.",
     )
     parser.add_argument(
         "--nj",
-        default=16,
+        default=1,
         type=int,
         help="Number of parallel jobs.",
     )

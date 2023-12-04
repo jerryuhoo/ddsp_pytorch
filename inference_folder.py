@@ -5,6 +5,7 @@ from preprocess import preprocess
 import librosa as li
 from scipy.io.wavfile import write
 from tqdm import tqdm
+import numpy as np
 
 model = torch.jit.load("export/ddsp_mytraining_pretrained.ts")
 
@@ -31,4 +32,8 @@ for file_path in tqdm(files, desc="Processing files"):
     output_file_name = os.path.splitext(base_name)[0] + ".wav"
     output_file_path = os.path.join(output_folder, output_file_name)
 
-    write(output_file_path, 16000, audio[0].detach().cpu().numpy())
+    audio_numpy = audio[0].detach().cpu().numpy()
+    normalized_audio = audio_numpy / np.max(np.abs(audio_numpy))
+    audio_16bit = np.int16(normalized_audio * 32767)
+    write(output_file_path, 16000, audio_16bit)
+    # write(output_file_path, 16000, audio[0].detach().cpu().numpy())
