@@ -94,4 +94,4 @@ python TuneAndSaveToFile_folder.py data/cats/train/
 ```
 
 ## Colab Example
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jerryuhoo/ddsp_pytorch/ddsp_cat_example.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jerryuhoo/ddsp_pytorch/blob/master/ddsp_cat_example.ipynb)
