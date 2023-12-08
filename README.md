@@ -85,12 +85,36 @@ By default, it will install the external in `~/Documents/Pd/externals`.
 
 ## Data Augmentation
 
+cat voice segmentation:
+(Please change paths and parameters inside the code)
+```
+python seg_cat.py
+```
+
+Pitch shifting:
 ```
 git clone https://github.com/ederwander/PyAutoTune.git
 cd PyAutoTune
 pip install -e .
 cd ../ddsp_pytorch
 python TuneAndSaveToFile_folder.py data/cats/train/
+```
+
+## Inference Example
+
+file inference:
+```
+python inference_file.py --model_path export/ddsp_cats_seg_pitchshift_pretrained.ts --input_file violin_original.mp3
+```
+
+folder inference (for evaluation only, please change paths and parameters inside the code):
+```
+python inference_folder.py
+```
+
+## Evaluation Example
+```
+python evaluate_f0.py [output folder] [reference folder]
 ```
 
 ## Colab Example
