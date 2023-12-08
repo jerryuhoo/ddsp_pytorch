@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(description="Process model and input file paths
 parser.add_argument(
     "--model_path",
     type=str,
-    default="export/ddsp_cats_seg_autotune_pretrained.ts",
+    default="export/ddsp_cats_seg_pitchshift_pretrained.ts",
     help="Path to the model file.",
 )
 parser.add_argument(

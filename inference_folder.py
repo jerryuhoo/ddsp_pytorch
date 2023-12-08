@@ -7,7 +7,7 @@ from scipy.io.wavfile import write
 from tqdm import tqdm
 import numpy as np
 
-model_name = "cats_seg"
+model_name = "cats_seg_pitchshift"
 
 model = torch.jit.load("export/ddsp_" + model_name + "_pretrained.ts")
 
