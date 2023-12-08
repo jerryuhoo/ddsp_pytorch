@@ -81,3 +81,17 @@ make install
 ```
 
 By default, it will install the external in `~/Documents/Pd/externals`. 
+
+
+## Data Augmentation
+
+```
+git clone https://github.com/ederwander/PyAutoTune.git
+cd PyAutoTune
+pip install -e .
+cd ../ddsp_pytorch
+python TuneAndSaveToFile_folder.py data/cats/train/
+```
+
+## Colab Example
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jerryuhoo/ddsp_pytorch/ddsp_cat_example.ipynb)
